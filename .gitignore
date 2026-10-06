@@ -1,0 +1,22 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# Raw datasets
+data/raw/olist/*.csv
+*.zip
+
+# Processed data
+data/processed/*.parquet
+
+# OS files
+.DS_Store
+Thumbs.db
