@@ -27,3 +27,5 @@ def profile_dataframe(df : pd.DataFrame , name :str)-> None:
 
    print("\nUnique rows")
    print (df.nunique())
+   print("\nStatistics")
+   print(df.describe(include="all"))
