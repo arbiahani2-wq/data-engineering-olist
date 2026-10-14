@@ -2,6 +2,7 @@ from pathlib import Path
 import pandas as pd 
 
 from src.profiling import profile_dataframe
+from src.data_discovery import check_foreign_key
 
 DATA_DIR = Path("data/raw/olist")
 
@@ -19,7 +20,21 @@ tables = {
     
 }
 
+loaded_tables = {}
+
 for table_name, table_file in tables.items():
     filepath = DATA_DIR / table_file
-    df = pd.read_csv(filepath)
-    profile_dataframe(df, table_name)
+    loaded_tables[table_name] = pd.read_csv(filepath)
+    profile_dataframe(loaded_tables[table_name], table_name)
+
+
+print("\n" + "=" * 50)
+print("Foreign Key Validation")
+print("=" * 50)
+
+check_foreign_key(
+    loaded_tables["orders"],
+    "customer_id",
+    loaded_tables["customers"],
+    "customer_id",
+)
